@@ -10,16 +10,16 @@ function App() {
 
   const [datos, setDatos] = useState({
     numPaginas: 0,
-    numIdiomas: 0
+    numIdiomas: 1
   })
 
   var contador = (datos.numPaginas*datos.numIdiomas*30);
+  
 
   const [total, setTotal] = useState(0);
 
 
   const handleOnChange = (event) => {
-    contador = 0;
     setDatos({...datos,
     [event.target.name] : parseInt(event.target.value)}) 
   }
@@ -40,6 +40,28 @@ function App() {
     if(isChecked[0] === false) {return 0}
   }
 
+  const suma = (id) => {
+     if(id === 0) {
+      setDatos({numPaginas : datos.numPaginas++})
+     }
+     if(id === 1) {
+      setDatos({numIdiomas : datos.numIdiomas++})
+     }
+  }
+
+  const resta = (id) => {
+    if(id === 0) {
+     setDatos({numPaginas : datos.numPaginas--})
+    }
+    if(id === 1) {
+     setDatos({numIdiomas : datos.numIdiomas--})
+    }
+ }
+
+ console.log(datos);
+ console.log(contador);
+
+
   return (
     <div className="divprincipal">
       <h3>Que vols fer?</h3>
@@ -57,32 +79,29 @@ function App() {
 
         <label className="d-flex">
           Nombre de pagines&nbsp;
-          <input 
-            type="button"
-            value="+"
-            onClick={()=> setDatos({numPaginas : datos.numPaginas + 1 })} 
-            className="botonesform btn btn-danger"/>
+          <input type="button" name="contPaginas" value="+" onClick={() => suma(0)} className="botonesform btn btn-danger"/>
           <InputBotones
             className="form-control"
             name="numPaginas" 
             tipo="paginas"
             value={datos.numPaginas}
-            funcion={handleOnChange}>
+            funcion={handleOnChange}
+          >  
           </InputBotones>
-          <button className="botonesform btn btn-danger">-</button>
+          <input type="button" name="contPaginas" value="-" onClick={() => resta(0)} className="botonesform btn btn-danger"/>
         </label>
         </div>
         <div style={{marginTop:"2%"}}>
         <label className="d-flex">
           Nombre d'idiomes&nbsp;
-          <button className="botonesform btn btn-danger">+</button>
           <InputBotones
             className="form-control"
             name="numIdiomas"  
             tipo="idiomas"
-            funcion={handleOnChange}>
+            value={datos.numIdiomas}
+            funcion={handleOnChange}
+           >
           </InputBotones>
-          <button className="botonesform btn btn-danger">+</button>
         </label>
         </div>
         
@@ -106,6 +125,7 @@ function App() {
       </div>
       <div className="resultat">
         El preu es de: {total + anadirONo()} €
+        El preu es de: {total + (isChecked[0] ? (datos.numPaginas*datos.numIdiomas*30) : 0)} €
       </div>
     </div>
   );

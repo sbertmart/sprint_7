@@ -2,24 +2,21 @@ import React from "react"
 
 const InputBotones = (props) => {
 
+
+    
+
     return (
-    <div>
-        <div className="d-flex">
-            <button
-            onClick={props.sumar} 
-            className="boto btn btn-danger"
-            >+</button>
+    <div 
+        className="d-flex">
             <input
                 className="form-control"
                 placeholder={`Indica el nombre de ${props.tipo}`}  
-                type="number" 
-                name={props.name}
-                onChange={props.funcion} 
+                type="number"
+                name={props.name} 
+                onChange={props.funcion}
+                value={props.value}
             ></input>
-            <button 
-            onClick={()=>props.restar}
-            className="boto btn btn-danger">-</button>
-        </div>
+          
     </div>
 
     );
