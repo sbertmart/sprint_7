@@ -10,18 +10,20 @@ function App() {
 
   const [datos, setDatos] = useState({
     numPaginas: 0,
-    numIdiomas: 1
+    numIdiomas: 0
   })
 
-  var contador = (datos.numPaginas*datos.numIdiomas*30);
-  
-
   const [total, setTotal] = useState(0);
+  const [extras, setExtras] = useState(0);
 
+  const actualizarExtras = () => {
+    setExtras(datos.numPaginas*datos.numIdiomas*30);
+  }
 
   const handleOnChange = (event) => {
     setDatos({...datos,
-    [event.target.name] : parseInt(event.target.value)}) 
+    [event.target.name] : parseInt(event.target.value)})
+    actualizarExtras();
   }
 
   const handleCheck = (position, valor) => {
@@ -29,38 +31,13 @@ function App() {
     setIsChecked(updateChecks);
     if (!isChecked[position]) {
       setTotal(total+parseInt(valor))} else {setTotal(total-parseInt(valor))}
-    if (!isChecked[0]) {
-      contador = 0;
+    if (isChecked[0]) {
+      setExtras(0);
     }
   }
 
-  const anadirONo = () => {
-    if(isNaN(contador)) {return 0}
-    if(isChecked[0] === true) {return contador}
-    if(isChecked[0] === false) {return 0}
-  }
-
-  const suma = (id) => {
-     if(id === 0) {
-      setDatos({numPaginas : datos.numPaginas++})
-     }
-     if(id === 1) {
-      setDatos({numIdiomas : datos.numIdiomas++})
-     }
-  }
-
-  const resta = (id) => {
-    if(id === 0) {
-     setDatos({numPaginas : datos.numPaginas--})
-    }
-    if(id === 1) {
-     setDatos({numIdiomas : datos.numIdiomas--})
-    }
- }
-
- console.log(datos);
- console.log(contador);
-
+  console.log(datos)
+  console.log(extras)
 
   return (
     <div className="divprincipal">
@@ -79,7 +56,7 @@ function App() {
 
         <label className="d-flex">
           Nombre de pagines&nbsp;
-          <input type="button" name="contPaginas" value="+" onClick={() => suma(0)} className="botonesform btn btn-danger"/>
+          <input type="button" name="contPaginas" value="+" onClick={() => setDatos({numPaginas : datos.numPaginas + 1})} className="botonesform btn btn-danger"/>
           <InputBotones
             className="form-control"
             name="numPaginas" 
@@ -88,12 +65,13 @@ function App() {
             funcion={handleOnChange}
           >  
           </InputBotones>
-          <input type="button" name="contPaginas" value="-" onClick={() => resta(0)} className="botonesform btn btn-danger"/>
+          <input type="button" name="contPaginas" value="-" onClick={() => setDatos({numPaginas : datos.numPaginas - 1})} className="botonesform btn btn-danger"/>
         </label>
         </div>
         <div style={{marginTop:"2%"}}>
         <label className="d-flex">
           Nombre d'idiomes&nbsp;
+          <input type="button" name="contPaginas" value="+" onClick={() => setDatos({numIdiomas : datos.numIdiomas + 1})} className="botonesform btn btn-danger"/>
           <InputBotones
             className="form-control"
             name="numIdiomas"  
@@ -102,6 +80,7 @@ function App() {
             funcion={handleOnChange}
            >
           </InputBotones>
+          <input type="button" name="contPaginas" value="+" onClick={() => setDatos({numIdiomas : datos.numIdiomas - 1})} className="botonesform btn btn-danger"/>
         </label>
         </div>
         
@@ -124,8 +103,7 @@ function App() {
         Una campaña de google ads (200€)
       </div>
       <div className="resultat">
-        El preu es de: {total + anadirONo()} €
-        El preu es de: {total + (isChecked[0] ? (datos.numPaginas*datos.numIdiomas*30) : 0)} €
+        El preu es de: {total + extras} €
       </div>
     </div>
   );
