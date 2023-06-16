@@ -21,8 +21,7 @@ function App() {
   const handleOnChange = (event) => {
     contador = 0;
     setDatos({...datos,
-    [event.target.name] : parseInt(event.target.value)})
-  
+    [event.target.name] : parseInt(event.target.value)}) 
   }
 
   const handleCheck = (position, valor) => {
@@ -35,26 +34,12 @@ function App() {
     }
   }
 
-  console.log(contador);
-
   const anadirONo = () => {
     if(isNaN(contador)) {return 0}
     if(isChecked[0] === true) {return contador}
     if(isChecked[0] === false) {return 0}
   }
 
-  const [contadorPag, setContadorPag] = useState(0);
-
-  const anadir = (event) => {
-    setDatos({...datos,
-    [event.target.name] : parseInt(event.target.value++)})
-  }
-  const sustraer = (event) => {
-    setDatos({...datos,
-    [event.target.name] : parseInt(event.target.value--)})
-  }
-
- 
   return (
     <div className="divprincipal">
       <h3>Que vols fer?</h3>
@@ -69,31 +54,35 @@ function App() {
       {isChecked[0] &&
       <Form>
         <div> 
+
         <label className="d-flex">
           Nombre de pagines&nbsp;
+          <input 
+            type="button"
+            value="+"
+            onClick={()=> setDatos({numPaginas : datos.numPaginas + 1 })} 
+            className="botonesform btn btn-danger"/>
           <InputBotones
             className="form-control"
             name="numPaginas" 
             tipo="paginas"
-            value={datos.numPaginas} 
-            sumar={anadir} 
-            restar={sustraer}
+            value={datos.numPaginas}
             funcion={handleOnChange}>
           </InputBotones>
+          <button className="botonesform btn btn-danger">-</button>
         </label>
         </div>
         <div style={{marginTop:"2%"}}>
         <label className="d-flex">
           Nombre d'idiomes&nbsp;
+          <button className="botonesform btn btn-danger">+</button>
           <InputBotones
             className="form-control"
             name="numIdiomas"  
             tipo="idiomas"
-            value={datos.numIdiomas} 
-            sumar={anadir} 
-            restar={sustraer}
             funcion={handleOnChange}>
           </InputBotones>
+          <button className="botonesform btn btn-danger">+</button>
         </label>
         </div>
         
