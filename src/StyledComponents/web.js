@@ -7,4 +7,5 @@ export const Form = styled.div`
     max-width:50%;
     border-radius:15px;
     display:block;
+    background-color:white;
     `
