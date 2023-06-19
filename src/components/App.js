@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import {Form} from '../StyledComponents/web.js'
 import InputBotones from "./InputBotones"
 import Modal from "./Modal"
-import { LlistatPressupostos } from "./LlistatPressupostos.js"
 import FormulariPressupostos from "./FormulariPressupostos.js"
 
 function App() {
@@ -153,6 +152,9 @@ function App() {
         <div className="resultat">
         El preu es de: {total + extras} €
         </div>
+       
+      </div>
+      <div className="col-6 m-4">
         <FormulariPressupostos 
           web={isChecked[0]}
           seo={isChecked[1]}
@@ -161,9 +163,6 @@ function App() {
           numIdiomes={idiomas}
           total={total + extras}
           />
-      </div>
-      <div className="col-6 m-4">
-        <LlistatPressupostos />
       </div>
       {modalPaginas && <div>
             <div onClick={switchModalPaginas} className="overlay"></div>
