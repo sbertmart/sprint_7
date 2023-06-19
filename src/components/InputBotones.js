@@ -2,8 +2,6 @@
 const InputBotones = (props) => {
 
 
-    
-
     return (
     <div 
         className="d-flex">
