@@ -5,6 +5,8 @@ import {Form} from '../StyledComponents/web.js'
 import InputBotones from "./InputBotones"
 import Modal from "./Modal"
 import FormulariPressupostos from "./FormulariPressupostos.js"
+import LlistatPressupostos from "./LlistatPressupostos.js"
+
 
 function App() {
   
@@ -77,6 +79,7 @@ function App() {
     console.log(modalIdiomas);
   }
 
+
   useEffect(() => {
     actualizarExtras();
   }, [paginas, idiomas, isChecked])
@@ -84,7 +87,7 @@ function App() {
 
   return (
     <div className="d-flex m-4">
-      <div className="col-6 m-4">
+      <div className="col-4 m-4">
         <h3>Que vols fer?</h3>
         <div>
         <input
@@ -152,9 +155,7 @@ function App() {
         <div className="resultat">
         El preu es de: {total + extras} €
         </div>
-       
-      </div>
-      <div className="col-6 m-4">
+        <div>
         <FormulariPressupostos 
           web={isChecked[0]}
           seo={isChecked[1]}
@@ -162,6 +163,12 @@ function App() {
           numPagines={paginas}
           numIdiomes={idiomas}
           total={total + extras}
+          />
+        </div>
+       
+      </div>
+      <div className="col-7 m-4">
+        <LlistatPressupostos 
           />
       </div>
       {modalPaginas && <div>

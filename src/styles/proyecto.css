@@ -1,7 +1,21 @@
 .divprincipal {
     margin:2% 5% 2% 5%;
   }
+
+  body {
+    width:100%;
+  }
+
+  .table th {
+    padding-left:2%;
+    text-align:left!important;
+  }
   
+  .full-width {
+    box-sizing:content-box!important;
+    width:100%;
+  }
+
   .resultat {
     font-weight:600;
     margin-top:1%;
