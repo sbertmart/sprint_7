@@ -4,5 +4,5 @@ export const LlistatPressupostos = () => {
         <div>
             <h3>Llistat Pressupostos</h3>
         </div>
-    )
+    );
 }
