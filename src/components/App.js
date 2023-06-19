@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import {Form} from '../StyledComponents/web.js'
 import InputBotones from "./InputBotones"
 import Modal from "./Modal"
+import { LlistatPressupostos } from "./LlistatPressupostos.js"
+import FormulariPressupostos from "./FormulariPressupostos.js"
 
 function App() {
   
@@ -82,18 +84,19 @@ function App() {
 
 
   return (
-    <div className="divprincipal">
-      <h3>Que vols fer?</h3>
-      <div>
+    <div className="d-flex m-4">
+      <div className="col-6 m-4">
+        <h3>Que vols fer?</h3>
+        <div>
         <input
           type="checkbox"
           name="web"
           onChange={() => handleCheck(0, 500)}
         />
         Una página web (500€)
-      </div>
-      {isChecked[0] &&
-      <Form>
+        </div>
+        {isChecked[0] &&
+        <Form>
         <div> 
 
         <label className="d-flex align-items-center">
@@ -129,27 +132,38 @@ function App() {
           
         </label>
         </div>
-        
-      </Form>}
+        </Form>}
     
-      <div>
+        <div>
         <input
           type="checkbox"
           name="seo"
           onChange={() => handleCheck(1, 300)}
         />
         Una consultoria SEO (300€)
-      </div>
-      <div>
+        </div>
+        <div>
         <input
           type="checkbox"
           name="ads"
           onChange={() =>handleCheck(2, 200)}
         />
         Una campaña de google ads (200€)
-      </div>
-      <div className="resultat">
+        </div>
+        <div className="resultat">
         El preu es de: {total + extras} €
+        </div>
+        <FormulariPressupostos 
+          web={isChecked[0]}
+          seo={isChecked[1]}
+          sem={isChecked[2]}
+          numPagines={paginas}
+          numIdiomes={idiomas}
+          total={total + extras}
+          />
+      </div>
+      <div className="col-6 m-4">
+        <LlistatPressupostos />
       </div>
       {modalPaginas && <div>
             <div onClick={switchModalPaginas} className="overlay"></div>
