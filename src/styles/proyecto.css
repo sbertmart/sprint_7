@@ -10,6 +10,11 @@
     padding-left:2%;
     text-align:left!important;
   }
+
+  .taula td{
+    padding:5px;
+    border:solid 1px lightgray;
+  }
   
   .full-width {
     box-sizing:content-box!important;

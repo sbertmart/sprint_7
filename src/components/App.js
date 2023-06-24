@@ -5,7 +5,6 @@ import {Form} from '../StyledComponents/web.js'
 import InputBotones from "./InputBotones"
 import Modal from "./Modal"
 import FormulariPressupostos from "./FormulariPressupostos.js"
-import LlistatPressupostos from "./LlistatPressupostos.js"
 
 
 function App() {
@@ -22,11 +21,11 @@ function App() {
   const [modalPaginas, setModalPaginas] = useState(false);
   const [modalIdiomas, setModalIdiomas] = useState(false);
 
+
   const actualizarExtras = () => {
     if(!isChecked[0]) {setExtras(0);}
     else {setExtras(paginas*idiomas*30)};
   };
-
 
   const handleCheck = (position, valor) => {
     const updateChecks = isChecked.map((item, index) => index === position ? !item : item)
@@ -155,20 +154,16 @@ function App() {
         <div className="resultat">
         El preu es de: {total + extras} €
         </div>
-        <div>
-        <FormulariPressupostos 
+       
+      </div>
+      <div className="col-7 m-4">
+      <FormulariPressupostos
           web={isChecked[0]}
           seo={isChecked[1]}
           sem={isChecked[2]}
           numPagines={paginas}
           numIdiomes={idiomas}
           total={total + extras}
-          />
-        </div>
-       
-      </div>
-      <div className="col-7 m-4">
-        <LlistatPressupostos 
           />
       </div>
       {modalPaginas && <div>
