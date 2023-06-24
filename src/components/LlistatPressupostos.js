@@ -4,6 +4,10 @@ const LlistatPressupostos = () => {
     var arrayPresus = [];
 
     const [clicked, setClicked] = useState(false);
+    const [arrayPress, setArrayPress] = useState([{
+        id:"",
+        dades:""
+    }]);
     
     class getPresu {
         constructor(id, dades) {
@@ -13,15 +17,15 @@ const LlistatPressupostos = () => {
     }
 
     const handleOnClick = () => {
-        arrayPresus = [];
+    setArrayPress([]);
     for(let i=1; i<=localStorage.length; i++) {
-    arrayPresus.push(new getPresu(i, JSON.stringify(localStorage.getItem(`Pressupost ${i}`)))); 
+    setArrayPress([...arrayPress , {id:i, dades:JSON.stringify(localStorage.getItem(`Pressupost ${i}`))}]); 
     }
     setClicked(!clicked);
-    console.log(arrayPresus);
+    console.log(arrayPress);
     }
 
-    console.log(arrayPresus);
+    console.log(arrayPress.length);
 
 
 
