@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Inicio from "./Components/Inicio.js";
+import Inicio from "./components/Inicio.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import App from "./Components/App.js"
+import App from "./components/App.js"
 
 const router = createBrowserRouter([
   {
